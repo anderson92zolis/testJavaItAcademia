@@ -1,8 +1,10 @@
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
 
-    static Scanner  = new Scanner(System.in);
+    static Scanner myObj  = new Scanner(System.in);
+    static List<Seller> mySellers = new ArrayList<>();
 
 
     public static void main(String[] args) {
@@ -10,10 +12,12 @@ public class Main {
         Item item2 = new Item("conejo", "animal", 20.0, 25 / 100);
         Item item3 = new Item("camarero", "humano", 15.0, 25 / 100);
         Item item4 = new Item("pelota", "objeto", 8.0, 25 / 100);
+
         Item item5 = new Item("futbolista", "humano", 25.0, 15 / 100);
         Item item6 = new Item("lapiz", "objeto", 18.0, 15 / 100);
         Item item7 = new Item("arbol", "planta", 12.0, 15 / 100);
         Item item8 = new Item("nido", "planta", 30.0, 15 / 100);
+
         Item item9 = new Item("laguna", "objeto", 22.0, 0);
         Item item10 = new Item("perro", "animal", 7.0, 0);
 
@@ -21,6 +25,7 @@ public class Main {
         Farmer myFarmer = new Farmer("Juan", "FARMER", "barcelona");
         Thief myThief = new Thief("Pedro", "Thief", "madrid");
         Merchant myMerchant = new Merchant("Maria", "Merchant", "london");
+
 
         myFarmer.add_item(item1);
         myFarmer.add_item(item2);
@@ -35,7 +40,26 @@ public class Main {
 
         System.out.println(myFarmer);
 
+        mySellers.add(myFarmer);
+        mySellers.add(myThief);
+        mySellers.add(myMerchant);
 
+        System.out.println(mySellers);
+
+
+        //1
+        //consultItemsOfSeller();
+
+        //2
+        //CheckSellerCity();
+
+        //3
+
+        showCheapestItemCiudadLambda();
+
+
+
+        /*
 
         boolean sortir = false;
 
@@ -45,7 +69,7 @@ public class Main {
                     consultItemsOfSeller();
                     break;
                 case 2:
-                    createLineBill();
+                    consultItemsOfSeller();
                     break;
                 case 3:
                     totalPriceByOneBill(numberBill);
@@ -78,11 +102,11 @@ public class Main {
                     sortir = true;
                     break;
             }
-        }while(!sortir);
+        }while(!sortir);                       */
     }
 
     public static byte menu(){
-        Scanner entrada = new Scanner(System.in);
+        // Scanner entrada = new Scanner(System.in);
         byte opcio;
         final byte MINIMO = 0;
         final byte MAXIMO = 6;
@@ -98,7 +122,7 @@ public class Main {
                     "\n " + "0. Exit the application. " +"\n" );
             System.out.print("Choose a number from 0 to 6:"+ "\r" );
 
-            opcio = entrada.nextByte();
+            opcio = myObj.nextByte();
             if(opcio < MINIMO || opcio > MAXIMO){
                 System.out.println("Choose a valid option");
             }
@@ -110,7 +134,72 @@ public class Main {
     // consulta los item de un vendedor
 
     public static void  consultItemsOfSeller(){
-        ;
+
+        // Consultar los los ítems de un vendedor.
+
+        System.out.println("Enter a name of seller: ");
+        String inputName= myObj.nextLine();
+        for (Seller sell:mySellers){
+            if (sell.getName().equalsIgnoreCase(inputName)){
+                System.out.println(sell.get_inventory());
+            }
+        }
     }
+
+    public static void  CheckSellerCity(){
+
+        //Consultar los vendedores que hay en una ciudad.
+
+        System.out.println("Enter a city to check the sellers: ");
+        String inputCity= myObj.nextLine();
+        for (Seller sell:mySellers){
+            if (sell.getCity().equalsIgnoreCase(inputCity)){
+                System.out.println(sell.getName());
+            }
+        }
+    }
+
+
+    public static void  showCheapestItemCiudadLambda(){
+
+        //Mostrar el ítems más barato de todos los vendedores de una ciudad ->lambdas
+
+        System.out.println("Enter a city to check the sellers: ");
+        String inputCity= myObj.nextLine();
+
+        for (Seller sell:mySellers){
+            if (sell.getCity().equalsIgnoreCase(inputCity)){
+                List<Item> cheapestItem = sell.get_inventory()
+                        .stream().sorted((Item i1, Item i2)-> (int)i1.getPrice() - (int)i2.getPrice())
+                        .limit(1).collect(Collectors.toList());
+                System.out.println("Cheapest item: " + cheapestItem + " at " + sell.get_inventory());
+            }
+        }
+
+        // List<Item> cheapestItem = items.stream().sorted((Item i1, Item i2)-> (int)i1.getPrice() - (int)i2.getPrice()).limit(1).collect(Collectors.toList());
+
+    }
+
+
+    public static void  showItemsDetTypoSortASC(){
+
+       // Mostrar todos los ítems de un determinado tipo ordenados por precio (asc) -> lambdas
+
+        System.out.println("Enter a city to check the sellers: ");
+        String inputCity= myObj.nextLine();
+
+        for (Seller sell:mySellers){
+            if (sell.getCity().equalsIgnoreCase(inputCity)){
+                Item cheapestItem = mySellers.stream()
+                        .flatMap(x -> x.get_inventory().stream())
+                        .min(Comparator.comparing(Item::getPrice))
+                        .orElse(null);
+                System.out.println("Cheapest item: " + cheapestItem.getPrice() ); // " at " cheapestItem.getName()
+            }
+        }
+
+
+    }
+
 
 }
