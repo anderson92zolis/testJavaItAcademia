@@ -130,8 +130,9 @@ public class Main {
     public static void  showItemsDetTypoSortASC(){
 
        // 4. Mostrar todos los ítems de un determinado tipo ordenados por precio (asc) -> lambdas
-
-        System.out.println("Enter a city to check the sellers: ");
+        /*
+        myObj.nextLine();
+        System.out.println("Enter a type of Item to order by price: ");
         String inputCity= myObj.nextLine();
 
         for (Seller sell:Initialization.getMySellers()){
@@ -142,7 +143,7 @@ public class Main {
                         .orElse(null);
                 System.out.println("Cheapest item: " + cheapestItem.getPrice() ); // " at " cheapestItem.getName()
             }
-        }
+        }       */
     }
 
     public static void  simulateBuyAItem(){
