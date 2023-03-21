@@ -47,14 +47,6 @@ public class Main {
         System.out.println(mySellers);
 
 
-        //1
-        //consultItemsOfSeller();
-
-        //2
-        //CheckSellerCity();
-
-        //3
-
         showCheapestItemCiudadLambda();
 
 
@@ -72,37 +64,24 @@ public class Main {
                     consultItemsOfSeller();
                     break;
                 case 3:
-                    totalPriceByOneBill(numberBill);
+                    showCheapestItemCiudadLambda();
                     break;
                 case 4:
-                    totalPriceAllBills();
+                    showItemsDetTypoSortASC();
                     break;
                 case 5:
-                    // here
-                    try {
-                        showNumberBillOfClient("client");
-                    } catch (PersonalizedException e) {
-                        throw new RuntimeException(e);
-                    }
+                     simulateBuyAItem();
                     break;
-                case 6: ShowBillOfCLient("Client");
-                    break;
-                case 7: ShowBillDependingOfProduct("Product");
-                    break;
-                case 8:
-                    numberBill= Methods.askInteger("Write a number of bill");
-                    deleteBillObsolManner(numberBill);
-                    break;
-                case 9: writeBillinCSV();
-                    break;
-                case 10:
-                    writeBillLineBillinCSV();
+                case 6: simulateBuyAItem();
                     break;
                 case 0: System.out.println("Gràcies per utilitzar l'aplicació");
                     sortir = true;
                     break;
             }
-        }while(!sortir);                       */
+        }while(!sortir);
+
+        */
+
     }
 
     public static byte menu(){
@@ -135,7 +114,7 @@ public class Main {
 
     public static void  consultItemsOfSeller(){
 
-        // Consultar los los ítems de un vendedor.
+        // 1. Consultar los los ítems de un vendedor.
 
         System.out.println("Enter a name of seller: ");
         String inputName= myObj.nextLine();
@@ -148,7 +127,7 @@ public class Main {
 
     public static void  CheckSellerCity(){
 
-        //Consultar los vendedores que hay en una ciudad.
+        //2. Consultar los vendedores que hay en una ciudad.
 
         System.out.println("Enter a city to check the sellers: ");
         String inputCity= myObj.nextLine();
@@ -162,9 +141,22 @@ public class Main {
 
     public static void  showCheapestItemCiudadLambda(){
 
-        //Mostrar el ítems más barato de todos los vendedores de una ciudad ->lambdas
+        //3 .Mostrar el ítems más barato de todos los vendedores de una ciudad ->lambdas
 
         System.out.println("Enter a city to check the sellers: ");
+        String inputCity= myObj.nextLine();
+        for (Seller sell:mySellers){
+            if (sell.getCity().equalsIgnoreCase(inputCity)){
+                double find=0;
+                for (Item item: sell.get_inventory()){
+                    if (item.getPrice()>find){
+                        find=  item.getPrice();
+                    }
+                }
+            }
+        }
+
+        /*   System.out.println("Enter a city to check the sellers: ");
         String inputCity= myObj.nextLine();
 
         for (Seller sell:mySellers){
@@ -174,16 +166,14 @@ public class Main {
                         .limit(1).collect(Collectors.toList());
                 System.out.println("Cheapest item: " + cheapestItem + " at " + sell.get_inventory());
             }
-        }
-
-        // List<Item> cheapestItem = items.stream().sorted((Item i1, Item i2)-> (int)i1.getPrice() - (int)i2.getPrice()).limit(1).collect(Collectors.toList());
+        }*/
 
     }
 
 
     public static void  showItemsDetTypoSortASC(){
 
-       // Mostrar todos los ítems de un determinado tipo ordenados por precio (asc) -> lambdas
+       // 4. Mostrar todos los ítems de un determinado tipo ordenados por precio (asc) -> lambdas
 
         System.out.println("Enter a city to check the sellers: ");
         String inputCity= myObj.nextLine();
@@ -201,5 +191,18 @@ public class Main {
 
     }
 
+    public static void  simulateBuyAItem(){
+
+        // 5- Simular la compra de un ítem a un NPC.
+
+
+    }
+
+    public static void  simulateSellAItem(){
+
+        // 6. Simular la venta de un ítem a un NPC.*
+
+
+    }
 
 }
