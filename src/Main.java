@@ -133,15 +133,21 @@ public class Main {
         String inputType=   myObj.nextLine();
 
         List<Item> resultOfItemByType = Initialization.getMySellers().stream()
-                .filter(seller-> seller.getType().equalsIgnoreCase(inputType))
                 .flatMap(seller -> seller.get_inventory().stream())
                 .collect(Collectors.toList());
 
-        resultOfItemByType.sort(Comparator.comparing(Item::getPrice));
-        System.out.println(resultOfItemByType);
+        List<Item> itemsOfColor = resultOfItemByType.stream()
+                .filter(item -> item.getType().equals(inputType))
+                .sorted((item1, item2) -> Double.compare(item1.getPrice(), item2.getPrice()))
+                .collect(Collectors.toList());
+        for (Item item : itemsOfColor) {
+            System.out.println(item.getName() + " - " + item.getPrice());
+        }
+
     }
 
     public static void  simulateBuyAItem(){
+
 
         // 5- Simular la compra de un ítem a un NPC.
 
