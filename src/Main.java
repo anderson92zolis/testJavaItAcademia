@@ -1,6 +1,5 @@
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Main {
 
@@ -41,7 +40,6 @@ public class Main {
                     break;
             }
         }while(!sortir);
-
 
     }
 
@@ -107,7 +105,6 @@ public class Main {
 
         //3 .Mostrar el ítems más barato de todos los vendedores de una ciudad ->lambdas
         myObj.nextLine();
-
         System.out.println("Enter a city to check the sellers: ");
         String inputCity= myObj.nextLine();
 
@@ -127,23 +124,21 @@ public class Main {
     }
 
 
-    public static void  showItemsDetTypoSortASC(){
+    public static void showItemsDetTypoSortASC(){
 
        // 4. Mostrar todos los ítems de un determinado tipo ordenados por precio (asc) -> lambdas
-        /*
+
         myObj.nextLine();
         System.out.println("Enter a type of Item to order by price: ");
-        String inputCity= myObj.nextLine();
+        String inputType=   myObj.nextLine();
 
-        for (Seller sell:Initialization.getMySellers()){
-            if (sell.getCity().equalsIgnoreCase(inputCity)){
-                Item cheapestItem = Initialization.getMySellers().stream()
-                        .flatMap(x -> x.get_inventory().stream())
-                        .min(Comparator.comparing(Item::getPrice))
-                        .orElse(null);
-                System.out.println("Cheapest item: " + cheapestItem.getPrice() ); // " at " cheapestItem.getName()
-            }
-        }       */
+        List<Item> resultOfItemByType = Initialization.getMySellers().stream()
+                .filter(seller-> seller.getType().equalsIgnoreCase(inputType))
+                .flatMap(seller -> seller.get_inventory().stream())
+                .collect(Collectors.toList());
+
+        resultOfItemByType.sort(Comparator.comparing(Item::getPrice));
+        System.out.println(resultOfItemByType);
     }
 
     public static void  simulateBuyAItem(){
