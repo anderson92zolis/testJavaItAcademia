@@ -1,4 +1,4 @@
-public class Farmer extends Seller {
+public class Farmer extends Seller3 {
     private final static int MAXITEMTOSELL = 5;
     private final static double TAXPERCENTAGE = 0.02;
 

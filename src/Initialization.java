@@ -3,7 +3,7 @@ import java.util.List;
 
 public class Initialization {
 
-    static List<Seller> mySellers=new ArrayList<>();
+    static List<Seller3> mySellers=new ArrayList<>();
 
     static void inicialization(){
 
@@ -25,7 +25,6 @@ public class Initialization {
         Thief myThief = new Thief("Pedro", "Thief", "madrid");
         Merchant myMerchant = new Merchant("Maria", "Merchant", "london");
 
-
         myFarmer.add_item(item1);
         myFarmer.add_item(item2);
         myFarmer.add_item(item3);
@@ -37,7 +36,6 @@ public class Initialization {
         myMerchant.add_item(item9);
         myMerchant.add_item(item10);
 
-
         mySellers.add(myFarmer);
         mySellers.add(myThief);
         mySellers.add(myMerchant);
@@ -45,11 +43,11 @@ public class Initialization {
         System.out.println(mySellers);;
     }
 
-    public static List<Seller> getMySellers() {
+    public static List<Seller3> getMySellers() {
         return mySellers;
     }
 
-    public static void setMySellers(List<Seller> mySellers) {
+    public static void setMySellers(List<Seller3> mySellers) {
         Initialization.mySellers = mySellers;
     }
 }

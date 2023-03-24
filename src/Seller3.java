@@ -1,13 +1,13 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Seller {
+public abstract class Seller3 {
     private String name;
     private String type;
     private String city;
     private List<Item> inventory;
 
-    public Seller(String name, String type, String city) {
+    public Seller3(String name, String type, String city) {
         this.name = name;
         this.type = type;
         this.city = city;
@@ -48,6 +48,8 @@ public abstract class Seller {
     public abstract int get_max_inventory_size();
 
     public abstract double get_tax_percentage();
+
+
 
     @Override
     public String toString() {

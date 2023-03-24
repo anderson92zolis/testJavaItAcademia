@@ -1,4 +1,4 @@
-public class Merchant extends Seller {
+public class Merchant extends Seller3 {
     private final static int MAXITEMTOSELL = 7;
     private final static double TAXPERCENTAGE = 4/100;
 

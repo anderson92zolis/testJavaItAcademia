@@ -79,7 +79,7 @@ public class Main {
 
         System.out.println("Enter a name of seller: ");
         String inputName= myObj.nextLine();
-        for (Seller sell:Initialization.getMySellers()){
+        for (Seller3 sell:Initialization.getMySellers()){
             if (sell.getName().equalsIgnoreCase(inputName)){
                 System.out.println(sell.get_inventory());
             }
@@ -93,7 +93,7 @@ public class Main {
 
         System.out.println("Enter a city to check the sellers: ");
         String inputCity= myObj.nextLine();
-        for (Seller sell:Initialization.getMySellers()){
+        for (Seller3 sell:Initialization.getMySellers()){
             if (sell.getCity().equalsIgnoreCase(inputCity)){
                 System.out.println(sell.getName());
             }
@@ -151,14 +151,31 @@ public class Main {
 
         // 5- Simular la compra de un ítem a un NPC.
 
+        myObj.nextLine();
+        System.out.println("Enter a ItemToBuy: ");
+        String inputName= myObj.nextLine();
+
+        print();
+
+
 
     }
 
     public static void  simulateSellAItem(){
 
+        print();
+
         // 6. Simular la venta de un ítem a un NPC.*
 
+    }
+
+    public static void print(){
+
+        Initialization.getMySellers().forEach( (n) -> { System.out.println(n); } );
 
     }
+
+
+
 
 }
