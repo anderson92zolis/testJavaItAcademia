@@ -6,18 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="644c785c-2067-442f-8b64-9478a5d9175e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/testJavaItAcademia/Buyer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testJavaItAcademia/Buyer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/testJavaItAcademia/Farmer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testJavaItAcademia/Farmer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/testJavaItAcademia/Initialization.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testJavaItAcademia/Initialization.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/testJavaItAcademia/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testJavaItAcademia/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/testJavaItAcademia/Merchant.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testJavaItAcademia/Merchant.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/testJavaItAcademia/Thief.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testJavaItAcademia/Thief.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Buyer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Buyer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Farmer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Farmer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Initialization.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Initialization.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Merchant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Merchant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Seller3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Npcs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Thief.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Thief.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

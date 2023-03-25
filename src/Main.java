@@ -53,7 +53,7 @@ public class Main {
 
         do {
 
-            System.out.println("Choose which option you want to perform from the following menu: " +
+            System.out.println("\nChoose which option you want to perform from the following menu: " +
                     "\n " + "1. Consultar los los ítems de un vendedor." +
                     "\n " + "2. Consultar los vendedores que hay en una ciudad " +
                     "\n " + "3. Mostrar el ítems más barato de todos los vendedores de una ciudad ->lambdas" +
@@ -74,10 +74,11 @@ public class Main {
 
     public static void consultItemsOfSeller() {
 
-        // 1. Consultar los los ítems de un vendedor.
+        // 1. Consultar los los ítems de un vendedor .
+        printNPCsavailable();
 
         myObj.nextLine();
-        System.out.println("Enter a name of seller: ");
+        System.out.println("\nEnter a name of seller: ");
         String inputName = myObj.nextLine();
 
         for (Npcs sell : Initialization.getMySellers()) {
@@ -90,7 +91,7 @@ public class Main {
     public static void CheckSellerCity() {
 
         //2. Consultar los vendedores que hay en una ciudad.
-
+        printNPCsavailable();
         myObj.nextLine();
         System.out.println("Enter a city to check the sellers: ");
         String inputCity = myObj.nextLine();
@@ -106,7 +107,7 @@ public class Main {
     public static Item showCheapestItemCiudadLambda() {
 
         //3 .Mostrar el ítems más barato de todos los vendedores de una ciudad ->lambdas
-
+        printNPCsavailable();
         myObj.nextLine();
         System.out.println("Enter a city to check the sellers: ");
         String inputCity = myObj.nextLine();
@@ -130,7 +131,7 @@ public class Main {
     public static void showItemsDetTypoSortASC() {
 
         // 4. Mostrar todos los ítems de un determinado tipo ordenados por precio (asc) -> lambdas
-
+        printNPCsavailable();
         myObj.nextLine();
         System.out.println("Enter a type of Item to order by price: ");
         String inputType = myObj.nextLine();
@@ -178,6 +179,13 @@ public class Main {
             indexNPCsBuyer = CategoryNPCs(NameBuyer);
 
             Item itemtoBuy = Initialization.getMySellers().get(indexNPCs).get_inventory().get(indexItem);
+
+            try {
+                Initialization.getMySellers().get(indexNPCs).sell_item(itemtoBuy);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+
             Item cloneItem = itemtoBuy.clone(itemtoBuy);
 
             if (indexNPCsBuyer == -1) {
@@ -189,6 +197,7 @@ public class Main {
 
                 System.out.println("successful purchase ");
                 Initialization.getMySellers().get(indexNPCs).get_inventory().remove(indexItem);
+
             } else {
                 try {
                     if (Initialization.getMySellers().get(indexNPCsBuyer).can_add_item()) {
@@ -207,7 +216,7 @@ public class Main {
         }
     }
 
-    public static void simulateSellItem() throws PersonalizedException {
+    public static void simulateSellItem(){
 
         // 6. Simular la venta de un ítem a un NPC.*
 

@@ -16,6 +16,5 @@ public class Buyer extends Npcs {
     @Override
     public double get_tax_percentage() {
         return TAXPERCENTAGE;
-
     }
 }
