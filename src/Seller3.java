@@ -49,7 +49,17 @@ public abstract class Seller3 {
 
     public abstract double get_tax_percentage();
 
-
+    public int lookForItem(String nameITEM) {
+        int index = 0;
+        int iFindingOrNot = -1;
+        while (index < inventory.size() && iFindingOrNot == -1) {
+            if (inventory.get(index).getName().equalsIgnoreCase(nameITEM)) {
+                iFindingOrNot = index;
+            }
+            index++;
+        }
+        return iFindingOrNot;
+    }
 
     @Override
     public String toString() {

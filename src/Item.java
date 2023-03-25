@@ -42,6 +42,10 @@ public class Item {
         this.wearPorcentage = wearPorcentage;
     }
 
+    public Item clone(Item item){
+        return new Item(item.getName(),item.getType(),item.getPrice(),item.getWearPorcentage());
+    };
+
     @Override
     public String toString() {
         return "Item{" +

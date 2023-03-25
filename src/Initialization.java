@@ -3,9 +3,9 @@ import java.util.List;
 
 public class Initialization {
 
-    static List<Seller3> mySellers=new ArrayList<>();
+    static List<Seller3> mySellers = new ArrayList<>();
 
-    static void inicialization(){
+    static void inicialization() {
 
         Item item1 = new Item("camion", "objeto", 10.0, 25 / 100);
         Item item2 = new Item("conejo", "animal", 20.0, 25 / 100);
@@ -22,8 +22,8 @@ public class Initialization {
 
 
         Farmer myFarmer = new Farmer("Juan", "FARMER", "barcelona");
-        Thief myThief = new Thief("Pedro", "Thief", "madrid");
-        Merchant myMerchant = new Merchant("Maria", "Merchant", "london");
+        Thief myThief = new Thief("Pedro", "THIEF", "madrid");
+        Merchant myMerchant = new Merchant("Maria", "MERCHANT", "london");
 
         myFarmer.add_item(item1);
         myFarmer.add_item(item2);
@@ -40,14 +40,14 @@ public class Initialization {
         mySellers.add(myThief);
         mySellers.add(myMerchant);
 
-        System.out.println(mySellers);;
+    }
+
+    public static void addSellers(Seller3 seller) {
+        mySellers.add(seller);
     }
 
     public static List<Seller3> getMySellers() {
         return mySellers;
     }
 
-    public static void setMySellers(List<Seller3> mySellers) {
-        Initialization.mySellers = mySellers;
-    }
 }
