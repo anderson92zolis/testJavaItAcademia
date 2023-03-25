@@ -1,17 +1,36 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Seller3 {
+public abstract class Npcs {
     private String name;
     private String type;
     private String city;
     private List<Item> inventory;
 
-    public Seller3(String name, String type, String city) {
+    public Npcs(String name, String type, String city) {
         this.name = name;
         this.type = type;
         this.city = city;
         this.inventory = new ArrayList<>();
+    }
+
+
+    public String getName() {
+        return name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+
+    public boolean can_add_item() {
+
+        return inventory.size() < get_max_inventory_size();
     }
 
     public void add_item(Item item) {
@@ -29,21 +48,6 @@ public abstract class Seller3 {
         inventory.remove(item);
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public boolean can_add_item() {
-        return inventory.size() < get_max_inventory_size();
-    }
 
     public abstract int get_max_inventory_size();
 

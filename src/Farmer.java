@@ -1,4 +1,4 @@
-public class Farmer extends Seller3 {
+public class Farmer extends Npcs {
     private final static int MAXITEMTOSELL = 5;
     private final static double TAXPERCENTAGE = 0.02;
 
@@ -20,6 +20,7 @@ public class Farmer extends Seller3 {
 
     @Override
     public double get_tax_percentage() {
+
         return TAXPERCENTAGE;
     }
 

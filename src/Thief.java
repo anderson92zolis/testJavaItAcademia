@@ -1,4 +1,4 @@
-public class Thief extends Seller3 {
+public class Thief extends Npcs {
     private final static int MAXITEMTOSELL = 3;
     private final static double TAXPERCENTAGE = 0.00;
 
