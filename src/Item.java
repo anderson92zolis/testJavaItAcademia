@@ -2,12 +2,13 @@ public class Item {
      private String name;
      private String type;
      private double price;
-     private int wearPorcentage;
+     private double wear;
 
-    public Item(String name, String type, double price,int wearPorcentage) {
+    public Item(String name, String type, double price,double wear) {
         this.name = name;
         this.type = type;
         this.price = price;
+        this.wear = wear;
     }
 
     public String getName() {
@@ -34,16 +35,17 @@ public class Item {
         this.price = price;
     }
 
-    public int getWearPorcentage() {
-        return wearPorcentage;
+    public double getWear() {
+        return wear;
     }
 
-    public void setWearPorcentage(int wearPorcentage) {
-        this.wearPorcentage = wearPorcentage;
+    public void setWear(double wear) {
+        this.wear = wear;
     }
 
     public Item clone(Item item){
-        return new Item(item.getName(),item.getType(),item.getPrice(),item.getWearPorcentage());
+        return new Item(item.getName(),item.getType(),item.getPrice(),item.getWear()); // bueno
+
     };
 
     @Override
@@ -52,7 +54,7 @@ public class Item {
                 "name='" + name + '\'' +
                 ", type='" + type + '\'' +
                 ", price=" + price +
-                ", wearPorcentage=" + wearPorcentage +
+                ", wearPorcentage=" + wear +
                 '}';
     }
 }

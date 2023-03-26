@@ -5,12 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="644c785c-2067-442f-8b64-9478a5d9175e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Methods.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/testJavaItAcademia/Buyer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testJavaItAcademia/Buyer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/testJavaItAcademia/Farmer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testJavaItAcademia/Farmer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/testJavaItAcademia/Initialization.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testJavaItAcademia/Initialization.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/testJavaItAcademia/Item.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testJavaItAcademia/Item.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/testJavaItAcademia/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testJavaItAcademia/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/testJavaItAcademia/Merchant.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testJavaItAcademia/Merchant.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/testJavaItAcademia/Npcs.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testJavaItAcademia/Npcs.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/testJavaItAcademia/Thief.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testJavaItAcademia/Thief.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Buyer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Buyer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Farmer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Farmer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Initialization.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Initialization.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Item.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Merchant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Merchant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Npcs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Npcs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Thief.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Thief.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +40,19 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="f391cd5b-9a46-46c9-bdeb-b05f8af3859b" />
+        <option name="url" value="https://github.com/anderson92zolis/testJavaItAcademia.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -34,17 +60,17 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

@@ -1,11 +1,14 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class Main {
 
-    static Scanner myObj = new Scanner(System.in);
+    //static Scanner myObj = new Scanner(System.in);
 
-    public static void main(String[] args) throws PersonalizedException {
+    public static void main(String[] args) {
 
         Initialization newIni = new Initialization();
         newIni.inicialization();
@@ -36,6 +39,9 @@ public class Main {
                 case 6:
                     simulateSellItem();
                     break;
+                case 7:
+                    saveTxt();
+                    break;
                 case 0:
                     System.out.println("Thanks for use the apps");
                     sortir = true;
@@ -49,7 +55,7 @@ public class Main {
         // Scanner entrada = new Scanner(System.in);
         byte opcio;
         final byte MINIMO = 0;
-        final byte MAXIMO = 6;
+        final byte MAXIMO = 7;
 
         do {
 
@@ -60,11 +66,11 @@ public class Main {
                     "\n " + "4. Mostrar todos los ítems de un determinado tipo ordenados por precio (asc) -> lambdas" +
                     "\n " + "5. Simular la compra de un ítem a un NPC" +
                     "\n " + "6. Simular la venta de un ítem a un NPC" +
+                    "\n " + "7. Guarda en un fichero txt" +
                     "\n " + "0. Exit the application. " + "\n");
 
-            System.out.print("Choose a number from 0 to 6:" + "\r");
 
-            opcio = myObj.nextByte();
+            opcio = Methods.askByte("Choose a number from 0 to 7:" + "\r");
             if (opcio < MINIMO || opcio > MAXIMO) {
                 System.out.println("Choose a valid option");
             }
@@ -75,11 +81,10 @@ public class Main {
     public static void consultItemsOfSeller() {
 
         // 1. Consultar los los ítems de un vendedor .
+
         printNPCsavailable();
 
-        myObj.nextLine();
-        System.out.println("\nEnter a name of seller: ");
-        String inputName = myObj.nextLine();
+        String inputName = Methods.askString("\nEnter a name of seller: ");
 
         for (Npcs sell : Initialization.getMySellers()) {
             if (sell.getName().equalsIgnoreCase(inputName)) {
@@ -92,9 +97,8 @@ public class Main {
 
         //2. Consultar los vendedores que hay en una ciudad.
         printNPCsavailable();
-        myObj.nextLine();
-        System.out.println("Enter a city to check the sellers: ");
-        String inputCity = myObj.nextLine();
+
+        String inputCity = Methods.askString("Enter a city to check the sellers: ");
 
         for (Npcs sell : Initialization.getMySellers()) {
             if (sell.getCity().equalsIgnoreCase(inputCity)) {
@@ -108,9 +112,8 @@ public class Main {
 
         //3 .Mostrar el ítems más barato de todos los vendedores de una ciudad ->lambdas
         printNPCsavailable();
-        myObj.nextLine();
-        System.out.println("Enter a city to check the sellers: ");
-        String inputCity = myObj.nextLine();
+
+        String inputCity = Methods.askString("Enter a city to check the sellers: ");
 
         List<Item> resultOfItemInCity = Initialization.getMySellers().stream()
                 .filter(seller -> seller.getCity().equalsIgnoreCase(inputCity))
@@ -132,16 +135,15 @@ public class Main {
 
         // 4. Mostrar todos los ítems de un determinado tipo ordenados por precio (asc) -> lambdas
         printNPCsavailable();
-        myObj.nextLine();
-        System.out.println("Enter a type of Item to order by price: ");
-        String inputType = myObj.nextLine();
+
+        String inputType = Methods.askString("Enter a type of Item to order by price: ");
 
         List<Item> resultOfItemByType = Initialization.getMySellers().stream()
                 .flatMap(seller -> seller.get_inventory().stream())
                 .collect(Collectors.toList());
 
         List<Item> itemsOfColor = resultOfItemByType.stream()
-                .filter(item -> item.getType().equals(inputType))
+                .filter(item -> item.getType().equalsIgnoreCase(inputType))
                 .sorted((item1, item2) -> Double.compare(item1.getPrice(), item2.getPrice()))
                 .collect(Collectors.toList());
 
@@ -154,14 +156,13 @@ public class Main {
 
         // 5- Simular la compra de un ítem a un NPC.
 
+
+
         printNPCsavailable();
 
-        myObj.nextLine();
-        System.out.println("\nEnter a Name of Category NPCs to buy: ");
-        String inputCategoryName = myObj.nextLine();
+        String inputCategoryName = Methods.askString("\nEnter a Name of Category NPCs to buy: ");
 
-        System.out.println("Enter a name of Item To Buy: ");
-        String itemName = myObj.nextLine();
+        String itemName = Methods.askString("Enter a name of Item To buy: ");
 
         int indexNPCs = CategoryNPCs(inputCategoryName);
         int indexNPCsBuyer = -1;
@@ -169,28 +170,21 @@ public class Main {
 
         if (indexNPCs != -1 && indexItem != -1) {
 
-            System.out.println("Enter a name of the buyer: ");
-            String NameBuyer = myObj.nextLine();
+            String NameBuyer = Methods.askString("Enter a name of the NPCs to sell: ");
 
             String type = "BUYER";
-            System.out.println("Enter a name of city: ");
-            String cityName = myObj.nextLine();
+            String cityName = Methods.askString("Enter a name of city: ");;
 
             indexNPCsBuyer = CategoryNPCs(NameBuyer);
 
             Item itemtoBuy = Initialization.getMySellers().get(indexNPCs).get_inventory().get(indexItem);
-
-            try {
-                Initialization.getMySellers().get(indexNPCs).sell_item(itemtoBuy);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-
             Item cloneItem = itemtoBuy.clone(itemtoBuy);
+
 
             if (indexNPCsBuyer == -1) {
 
                 Buyer myBuyer = new Buyer(NameBuyer, type, cityName);
+                myBuyer.calculatePercentageWear(cloneItem);
                 Initialization.addSellers(myBuyer);
                 indexNPCsBuyer = CategoryNPCs(myBuyer.getName());
                 Initialization.getMySellers().get(indexNPCsBuyer).get_inventory().add(cloneItem);
@@ -201,65 +195,7 @@ public class Main {
             } else {
                 try {
                     if (Initialization.getMySellers().get(indexNPCsBuyer).can_add_item()) {
-                        Initialization.getMySellers().get(indexNPCsBuyer).get_inventory().add(cloneItem);
-                        System.out.println("successful purchase ");
-                        Initialization.getMySellers().get(indexNPCs).get_inventory().remove(indexItem);
-                    } else {
-                        throw new PersonalizedException();
-                    }
-                } catch (PersonalizedException e) {
-                    System.out.println("The user can't add more items : " + e.getMessage());
-                }
-            }
-        } else {
-            System.out.println("name of Category NPCs or name Items are Incorrect!");
-        }
-    }
-
-    public static void simulateSellItem(){
-
-        // 6. Simular la venta de un ítem a un NPC.*
-
-        printNPCsavailable();
-
-        myObj.nextLine();
-        System.out.println("\nEnter a Name of Category NPCs to sell: ");
-        String inputCategoryName = myObj.nextLine();
-
-        System.out.println("Enter a name of Item To sell: ");
-        String itemName = myObj.nextLine();
-
-        int indexNPCs = CategoryNPCs(inputCategoryName);
-        int indexNPCsBuyer = -1;
-        int indexItem = Initialization.getMySellers().get(indexNPCs).lookForItem(itemName);
-
-        if (indexNPCs != -1 && indexItem != -1) {
-
-            System.out.println("Enter a name of the buyer to sell: ");
-            String NameBuyer = myObj.nextLine();
-
-            String type = "BUYER";
-            System.out.println("Enter a name of city: ");
-            String cityName = myObj.nextLine();
-
-            indexNPCsBuyer = CategoryNPCs(NameBuyer);
-
-            Item itemtoBuy = Initialization.getMySellers().get(indexNPCs).get_inventory().get(indexItem);
-            Item cloneItem = itemtoBuy.clone(itemtoBuy);
-
-            if (indexNPCsBuyer == -1) {
-
-                Buyer myBuyer = new Buyer(NameBuyer, type, cityName);
-                Initialization.addSellers(myBuyer);
-                indexNPCsBuyer = CategoryNPCs(myBuyer.getName());
-                Initialization.getMySellers().get(indexNPCsBuyer).get_inventory().add(cloneItem);
-
-                System.out.println("successful purchase ");
-                Initialization.getMySellers().get(indexNPCs).get_inventory().remove(indexItem);
-
-            } else {
-                try {
-                    if (Initialization.getMySellers().get(indexNPCsBuyer).can_add_item()) {
+                        Initialization.getMySellers().get(indexNPCsBuyer).calculatePercentageWear(cloneItem);
                         Initialization.getMySellers().get(indexNPCsBuyer).get_inventory().add(cloneItem);
                         System.out.println("successful purchase ");
                         Initialization.getMySellers().get(indexNPCs).get_inventory().remove(indexItem);
@@ -273,6 +209,96 @@ public class Main {
         } else {
             System.out.println("name of Name of Category NPCs or Items Incorrect!");
         }
+    }
+
+    public static void simulateSellItem(){
+
+        // 6. Simular la venta de un ítem a un NPC.*
+
+        printNPCsavailable();
+
+        String inputCategoryName = Methods.askString("\nEnter a Name of Category NPCs to sell: ");
+
+        String itemName = Methods.askString("Enter a name of Item To sell: ");
+
+        int indexNPCs = CategoryNPCs(inputCategoryName);
+        int indexNPCsBuyer = -1;
+        int indexItem = Initialization.getMySellers().get(indexNPCs).lookForItem(itemName);
+
+        if (indexNPCs != -1 && indexItem != -1) {
+
+            String NameBuyer = Methods.askString("Enter a name of the buyer to sell: ");
+
+            String type = "BUYER";
+            String cityName = Methods.askString("Enter a name of city: ");
+
+            indexNPCsBuyer = CategoryNPCs(NameBuyer);
+
+            Item itemtoBuy = Initialization.getMySellers().get(indexNPCs).get_inventory().get(indexItem);
+            Item cloneItem = itemtoBuy.clone(itemtoBuy);
+
+
+            if (indexNPCsBuyer == -1) {
+
+                Buyer myBuyer = new Buyer(NameBuyer, type, cityName);
+                myBuyer.calculatePercentageWear(cloneItem);
+                Initialization.addSellers(myBuyer);
+                indexNPCsBuyer = CategoryNPCs(myBuyer.getName());
+                Initialization.getMySellers().get(indexNPCsBuyer).get_inventory().add(cloneItem);
+
+                System.out.println("successful purchase ");
+                Initialization.getMySellers().get(indexNPCs).get_inventory().remove(indexItem);
+
+            } else {
+                try {
+                    if (Initialization.getMySellers().get(indexNPCsBuyer).can_add_item()) {
+                        Initialization.getMySellers().get(indexNPCsBuyer).calculatePercentageWear(cloneItem);
+                        Initialization.getMySellers().get(indexNPCsBuyer).get_inventory().add(cloneItem);
+                        System.out.println("successful purchase ");
+                        Initialization.getMySellers().get(indexNPCs).get_inventory().remove(indexItem);
+                    } else {
+                        throw new PersonalizedException();
+                    }
+                } catch (PersonalizedException e) {
+                    System.out.println("The user can't add more items : " + e.getMessage());
+                }
+            }
+        } else {
+            System.out.println("name of Name of Category NPCs or Items Incorrect!");
+        }
+    }
+
+    public static void saveTxt(){
+
+
+            //Write the NPCs and Items.
+
+            String nameTxt= Methods.askString("Enter name of a txt: ");
+            BufferedWriter writer = null;
+
+            try {
+                writer = new BufferedWriter(new FileWriter(nameTxt));
+
+                // Escribir cada objeto de la lista en una línea separada
+
+                for (Npcs npcs : Initialization.getMySellers()) {
+                    writer.write(npcs.toString() +", ");;
+                    writer.newLine();
+                }
+
+            } catch (IOException e) {
+                System.out.println("Error writing to file");
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (writer != null) {
+                        writer.close();
+                    }
+                } catch (IOException e) {
+                    System.out.println("Failed to close file");
+                    e.printStackTrace();
+                }
+            }
     }
 
     public static int CategoryNPCs(String TypeNPCs) {

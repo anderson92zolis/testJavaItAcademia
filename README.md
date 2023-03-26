@@ -6,7 +6,7 @@ Existen tres categorías de NPCs:
         El campecino tiene hasta 5 ítems para vender y al precio original le agrega un impuesto del 2%. 
         El Ladrón, hasta 3 y no cobra impuestos. 
         El mercader, hasta 7 y cobra un 4% de impuestos. Cada NPC está ubicado en una ciudad.
-        
+        |
    Los ítems tienen un nombre, un tipo, un precio y porcentaje de desgaste. 
       Cuando un ladrón agrega un ítem a su inventario este se deteriora un 25%. 
       Cuando lo hace un campecino, un 15%. En cambio. 

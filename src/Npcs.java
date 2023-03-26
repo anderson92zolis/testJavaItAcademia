@@ -34,12 +34,14 @@ public abstract class Npcs {
     }
 
     public void add_item(Item item) {
-        inventory.add(item);
+        //inventory.add(item);
+        inventory.add(calculatePercentageWear(item));
     }
 
     public List<Item> get_inventory() {
         return inventory;
     }
+
 
     public void sell_item(Item item) throws Exception {
         if (!inventory.contains(item)) {
@@ -48,12 +50,18 @@ public abstract class Npcs {
         inventory.remove(item);
     }
 
+    public Item calculatePercentageWear(Item item) {
+        return null;
+    }
 
     public abstract int get_max_inventory_size();
 
     public abstract double get_tax_percentage();
 
+    public abstract double get_WEAR_PERCENTAGE();
+
     public int lookForItem(String nameITEM) {
+
         int index = 0;
         int iFindingOrNot = -1;
         while (index < inventory.size() && iFindingOrNot == -1) {

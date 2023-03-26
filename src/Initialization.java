@@ -7,21 +7,21 @@ public class Initialization {
 
     static void inicialization() {
 
-        Item item1 = new Item("camion", "objeto", 10.0, 25 / 100);
-        Item item2 = new Item("conejo", "animal", 20.0, 25 / 100);
-        Item item3 = new Item("perro", "humano", 15.0, 25 / 100);
-        Item item4 = new Item("cable", "objeto", 8.0, 25 / 100);
+        Item item1 = new Item("camion", "objeto", 10.0, 150);
+        Item item2 = new Item("conejo", "animal", 20.0, 150);
+        Item item3 = new Item("perro", "animal", 15.0, 150);
+        Item item4 = new Item("cable", "objeto", 8.0, 150);
 
-        Item item5 = new Item("mouse", "humano", 25.0, 15 / 100);
-        Item item6 = new Item("lapiz", "objeto", 18.0, 15 / 100);
+        Item item5 = new Item("mouse", "animal", 25.0, 250);
+        Item item6 = new Item("lapiz", "objeto", 18.0, 250);
 
 
-        Item item7 = new Item("arbol", "planta", 12.0, 15 / 100);
-        Item item8 = new Item("nido", "planta", 30.0, 15 / 100);
-        Item item9 = new Item("laguna", "objeto", 22.0, 0);
-        Item item10 = new Item("perro", "animal", 7.0, 0);
-        Item item11 = new Item("laguna", "objeto", 22.0, 0);
-        Item item12 = new Item("perro", "animal", 7.0, 0);
+        Item item7 = new Item("arbol", "planta", 12.0,500);
+        Item item8 = new Item("doctor", "humano", 30.0, 500);
+        Item item9 = new Item("laguna", "objeto", 22.0, 500);
+        Item item10 = new Item("perro", "animal", 7.0, 500);
+        Item item11 = new Item("laguna", "objeto", 22.0, 500);
+        Item item12 = new Item("perro", "animal", 7.0, 500);
 
 
         Farmer myFarmer = new Farmer("Juan", "FARMER", "barcelona");
