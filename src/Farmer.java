@@ -9,8 +9,7 @@ public class Farmer extends Npcs {
     }
 
     @Override
-    public void sell_item(Item item) throws Exception {
-        super.sell_item(item);
+    public void sell_item(Item item) {
         double priceWithTax = item.getPrice() * (1 + get_tax_percentage());
         item.setPrice(priceWithTax);
     }

@@ -96,6 +96,7 @@ public class Main {
     public static void CheckSellerCity() {
 
         //2. Consultar los vendedores que hay en una ciudad.
+
         printNPCsavailable();
 
         String inputCity = Methods.askString("Enter a city to check the sellers: ");
@@ -134,6 +135,7 @@ public class Main {
     public static void showItemsDetTypoSortASC() {
 
         // 4. Mostrar todos los ítems de un determinado tipo ordenados por precio (asc) -> lambdas
+
         printNPCsavailable();
 
         String inputType = Methods.askString("Enter a type of Item to order by price: ");
@@ -156,8 +158,6 @@ public class Main {
 
         // 5- Simular la compra de un ítem a un NPC.
 
-
-
         printNPCsavailable();
 
         String inputCategoryName = Methods.askString("\nEnter a Name of Category NPCs to buy: ");
@@ -166,14 +166,17 @@ public class Main {
 
         int indexNPCs = CategoryNPCs(inputCategoryName);
         int indexNPCsBuyer = -1;
-        int indexItem = Initialization.getMySellers().get(indexNPCs).lookForItem(itemName);
+        int indexItem=-1;
+
+        if (indexNPCs!=-1){
+            indexItem = Initialization.getMySellers().get(indexNPCs).lookForItem(itemName);}
 
         if (indexNPCs != -1 && indexItem != -1) {
 
             String NameBuyer = Methods.askString("Enter a name of the NPCs to sell: ");
 
             String type = "BUYER";
-            String cityName = Methods.askString("Enter a name of city: ");;
+
 
             indexNPCsBuyer = CategoryNPCs(NameBuyer);
 
@@ -183,6 +186,7 @@ public class Main {
 
             if (indexNPCsBuyer == -1) {
 
+                String cityName = Methods.askString("Enter a name of city: ");
                 Buyer myBuyer = new Buyer(NameBuyer, type, cityName);
                 myBuyer.calculatePercentageWear(cloneItem);
                 Initialization.addSellers(myBuyer);
@@ -207,7 +211,7 @@ public class Main {
                 }
             }
         } else {
-            System.out.println("name of Name of Category NPCs or Items Incorrect!");
+            System.out.println("Name of Category NPCs or Items Incorrect!");
         }
     }
 
@@ -217,20 +221,23 @@ public class Main {
 
         printNPCsavailable();
 
-        String inputCategoryName = Methods.askString("\nEnter a Name of Category NPCs to sell: ");
+        String inputCategoryName = Methods.askString("\nEnter a Name of Category NPCs to buy: ");
 
-        String itemName = Methods.askString("Enter a name of Item To sell: ");
+        String itemName = Methods.askString("Enter a name of Item To buy: ");
 
         int indexNPCs = CategoryNPCs(inputCategoryName);
         int indexNPCsBuyer = -1;
-        int indexItem = Initialization.getMySellers().get(indexNPCs).lookForItem(itemName);
+        int indexItem=-1;
+
+        if (indexNPCs!=-1){
+            indexItem = Initialization.getMySellers().get(indexNPCs).lookForItem(itemName);}
 
         if (indexNPCs != -1 && indexItem != -1) {
 
-            String NameBuyer = Methods.askString("Enter a name of the buyer to sell: ");
+            String NameBuyer = Methods.askString("Enter a name of the NPCs to sell: ");
 
             String type = "BUYER";
-            String cityName = Methods.askString("Enter a name of city: ");
+
 
             indexNPCsBuyer = CategoryNPCs(NameBuyer);
 
@@ -240,6 +247,7 @@ public class Main {
 
             if (indexNPCsBuyer == -1) {
 
+                String cityName = Methods.askString("Enter a name of city: ");
                 Buyer myBuyer = new Buyer(NameBuyer, type, cityName);
                 myBuyer.calculatePercentageWear(cloneItem);
                 Initialization.addSellers(myBuyer);
@@ -264,7 +272,7 @@ public class Main {
                 }
             }
         } else {
-            System.out.println("name of Name of Category NPCs or Items Incorrect!");
+            System.out.println("Name of Category NPCs or Items Incorrect!");
         }
     }
 
@@ -287,6 +295,7 @@ public class Main {
                 }
 
             } catch (IOException e) {
+
                 System.out.println("Error writing to file");
                 e.printStackTrace();
             } finally {
@@ -301,6 +310,48 @@ public class Main {
             }
     }
 
+    public static void printNPCsavailable() {
+
+        for (int index = 0; index < Initialization.getMySellers().size(); index++) {
+
+            if (Initialization.getMySellers().get(index) instanceof Farmer) {
+
+                Farmer Castingfarmer = (Farmer) Initialization.getMySellers().get(index);
+
+                System.out.print("\nName: " + Castingfarmer.getName() +
+                        ", Type: " + Castingfarmer.getType() + ", City: " +
+                        Castingfarmer.getCity()+ " InventoryItems: \n" );
+                Castingfarmer.get_inventory().forEach(System.out::println);
+
+            } else if (Initialization.getMySellers().get(index) instanceof Thief) {
+
+                Thief castingThief = (Thief) Initialization.getMySellers().get(index);
+
+                System.out.print("\nName: " + castingThief.getName() +
+                        ", Type: " + castingThief.getType() + ", City: " +
+                        castingThief.getCity() + " InventoryItems: \n" );
+                castingThief.get_inventory().forEach(System.out::println);
+
+            } else if (Initialization.getMySellers().get(index) instanceof Merchant) {
+
+                Merchant castingMerchant = (Merchant) Initialization.getMySellers().get(index);
+
+                System.out.print("\nName: " + castingMerchant.getName() +
+                        ", Type: " + castingMerchant.getType() + ", City: " +
+                        castingMerchant.getCity() + " InventoryItems: \n" );
+                castingMerchant.get_inventory().forEach(System.out::println);
+
+            } else {
+                Buyer castingBuyer = (Buyer) Initialization.getMySellers().get(index);
+
+                System.out.print("\nName: " + castingBuyer.getName() +
+                        ", Type: " + castingBuyer.getType() + ", City: " +
+                        castingBuyer.getCity() + " InventoryItems: \n" );
+                castingBuyer.get_inventory().forEach(System.out::println);
+            }
+        }
+    }
+
     public static int CategoryNPCs(String TypeNPCs) {
         int index = 0;
         int iFindingOrNot = -1;
@@ -313,42 +364,5 @@ public class Main {
         return iFindingOrNot;
     }
 
-    public static void printNPCsavailable() {
 
-        for (int index = 0; index < Initialization.getMySellers().size(); index++) {
-
-            if (Initialization.getMySellers().get(index) instanceof Farmer) {
-
-                Farmer Castingfarmer = (Farmer) Initialization.getMySellers().get(index);
-
-                System.out.println("\nName: " + Castingfarmer.getName() +
-                        ", Type: " + Castingfarmer.getType() + ", City: " +
-                        Castingfarmer.getCity() + " InventoryItems: \n" + Castingfarmer.get_inventory());
-
-            } else if (Initialization.getMySellers().get(index) instanceof Thief) {
-
-                Thief castingThief = (Thief) Initialization.getMySellers().get(index);
-
-                System.out.println("\nName: " + castingThief.getName() +
-                        ", Type: " + castingThief.getType() + ", City: " +
-                        castingThief.getCity() + " InventoryItems: \n" + castingThief.get_inventory());
-
-
-            } else if (Initialization.getMySellers().get(index) instanceof Merchant) {
-
-                Merchant castingMerchant = (Merchant) Initialization.getMySellers().get(index);
-
-                System.out.println("\nName: " + castingMerchant.getName() +
-                        ", Type: " + castingMerchant.getType() + ", City: " +
-                        castingMerchant.getCity() + " InventoryItems: \n" + castingMerchant.get_inventory());
-
-            } else {
-                Buyer castingBuyer = (Buyer) Initialization.getMySellers().get(index);
-
-                System.out.println("\nName: " + castingBuyer.getName() +
-                        ", Type: " + castingBuyer.getType() + ", City: " +
-                        castingBuyer.getCity() + " InventoryItems: \n" + castingBuyer.get_inventory());
-            }
-        }
-    }
 }

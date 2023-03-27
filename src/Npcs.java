@@ -34,7 +34,6 @@ public abstract class Npcs {
     }
 
     public void add_item(Item item) {
-        //inventory.add(item);
         inventory.add(calculatePercentageWear(item));
     }
 
@@ -42,17 +41,22 @@ public abstract class Npcs {
         return inventory;
     }
 
+    /*
+
 
     public void sell_item(Item item) throws Exception {
         if (!inventory.contains(item)) {
             throw new Exception("Item not found in inventory!");
-        }
+            }
         inventory.remove(item);
     }
 
-    public Item calculatePercentageWear(Item item) {
-        return null;
-    }
+     */
+
+    public abstract void sell_item(Item item);
+
+
+    public abstract Item calculatePercentageWear(Item item);
 
     public abstract int get_max_inventory_size();
 
